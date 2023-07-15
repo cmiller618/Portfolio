@@ -12,6 +12,11 @@ namespace Chess_API.Models
         public string PieceFile { get; set; }
         public bool IsWhite { get; set; }
 
+        public int[,] GetEvaluationBoard()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Movement(int x, int y, int newX, int newY, Board board)
         {
             if (ValidMovement(x, y, newX, newY, board))

@@ -8,10 +8,11 @@ namespace Chess_API.Models
 {
     public interface Piece
     {
-        public bool HasMoved { get; set; }
-        public string PieceFile { get; set; }
-        public bool IsWhite { get; set; }
+        public bool HasMoved { get; set; } //A check for whether a piece has moved. Useful for castling and pawn movement
+        public string PieceFile { get; set; } //location of the picture of the piece
+        public bool IsWhite { get; set; } // A check if the Piece is a white piece or not
         public bool ValidMovement(int x, int y, int newX, int newY, Board board);
         public bool Movement(int x, int y, int newX, int newY, Board board);
+        public int[,] GetEvaluationBoard();
     }
 }

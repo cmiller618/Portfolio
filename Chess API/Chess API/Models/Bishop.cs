@@ -9,7 +9,7 @@ namespace Chess_API.Models
     public class Bishop : Piece
     {
         public bool HasMoved { get; set; }
-        public string PieceFile { get; set; }
+        public string PieceFile { get; set; } 
         public bool IsWhite { get; set; }
 
         public bool Movement(int x, int y, int newX, int newY, Board board)
@@ -141,6 +141,9 @@ namespace Chess_API.Models
             return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
         }
 
-
+        public int[,] GetEvaluationBoard()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

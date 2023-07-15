@@ -242,5 +242,10 @@ namespace Chess_API.Models
 
             return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
         }
+
+        public int[,] GetEvaluationBoard()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
