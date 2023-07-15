@@ -90,22 +90,57 @@ namespace Chess_API.Models
             
 
         }
-
-        public int[,] GetEvaluationBoard()
+        public int[,] GetEvaluationBoard(Board board)
         {
-            int[,] EvaluationBoard = new int[,] 
-            { { 0, 0, 0, 0, 0, 0, 0, 0}, 
-            { 50, 50, 50, 50, 50, 50, 50, 50},
-            {10, 10, 20, 30, 30, 20, 10, 10 }, 
-            {5, 5, 10, 25, 25, 10, 5, 5}, 
-            {0, 0, 0, 20, 20, 0, 0, 0},
-            {5, -5, -10, 0, 0, -10, -5, 5 }, 
-            {5, 10, 10, -20, -20, 10, 10, 5}, 
-            {5, 10, 10, -20, -20, 10, 10, 5},
-            {0, 0, 0, 0, 0, 0, 0, 0 } 
-            };
+            int[,] EvaluationBoard = new int[8, 8];
+
+            // Assigning evaluation values for pawns
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    if (board.ChessBoard[col, row] is Pawn)
+                    {
+                        EvaluationBoard[col, row] = CalculatePawnEvaluation(col, row, board);
+                    }
+                }
+            }
 
             return EvaluationBoard;
         }
+
+        private int CalculatePawnEvaluation(int col, int row, Board board)
+        {
+            int evaluation = 1; // Base evaluation value for the pawn
+
+            if (board.ChessBoard[col, row].IsWhite)
+            {
+                if (row < 6 && board.ChessBoard[col, row + 1] == null)
+                {
+                    evaluation += 1;
+
+                    if (row < 5 && board.ChessBoard[col, row + 2] == null)
+                    {
+                        evaluation += 1;
+                    }
+                }
+            }
+            else
+            {
+                if (row > 1 && board.ChessBoard[col, row - 1] == null)
+                {
+                    evaluation += 1;
+
+                    if (row > 2 && board.ChessBoard[col, row - 2] == null)
+                    {
+                        evaluation += 1;
+                    }
+                }
+            }
+
+            return evaluation;
+        }
+
+
     }
 }

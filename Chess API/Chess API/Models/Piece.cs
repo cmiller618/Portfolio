@@ -13,6 +13,6 @@ namespace Chess_API.Models
         public bool IsWhite { get; set; } // A check if the Piece is a white piece or not
         public bool ValidMovement(int x, int y, int newX, int newY, Board board);
         public bool Movement(int x, int y, int newX, int newY, Board board);
-        public int[,] GetEvaluationBoard();
+        public int[,] GetEvaluationBoard(Board board);
     }
 }

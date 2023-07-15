@@ -242,10 +242,59 @@ namespace Chess_API.Models
 
             return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
         }
-
-        public int[,] GetEvaluationBoard()
+        public int[,] GetEvaluationBoard(Board board)
         {
-            throw new NotImplementedException();
+            int[,] EvaluationBoard = new int[8, 8];
+
+            // Assigning evaluation values for queens
+            int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+            int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    if (board.ChessBoard[col, row] is Queen)
+                    {
+                        // Assigning base evaluation value for the queen
+                        EvaluationBoard[col, row] = 9;
+
+                        // Modifying evaluation value based on square position and mobility
+                        for (int i = 0; i < 8; i++)
+                        {
+                            int nx = col;
+                            int ny = row;
+
+                            for (int step = 1; step < 8; step++)
+                            {
+                                nx += dx[i];
+                                ny += dy[i];
+
+                                if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8)
+                                {
+                                    // Higher values for squares closer to the center
+                                    EvaluationBoard[col, row] += 1;
+
+                                    // Lower values for squares with potential blockades
+                                    if (board.ChessBoard[nx, ny] != null)
+                                    {
+                                        EvaluationBoard[col, row] -= 1;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return EvaluationBoard;
         }
+
+
     }
 }

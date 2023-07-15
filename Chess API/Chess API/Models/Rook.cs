@@ -140,10 +140,54 @@ namespace Chess_API.Models
             return CheckForPiecesRightMovement(x++, y, newX, newY, board);
         }
 
-        public int[,] GetEvaluationBoard()
+        public int[,] GetEvaluationBoard(Board board)
         {
-            throw new NotImplementedException();
-            
+            int[,] EvaluationBoard = new int[8, 8];
+
+            // Assigning evaluation values for rooks
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    if (board.ChessBoard[col, row] is Rook)
+                    {
+                        EvaluationBoard[col, row] = CalculateRookEvaluation(col, row, board);
+                    }
+                }
+            }
+
+            return EvaluationBoard;
         }
+
+        private int CalculateRookEvaluation(int col, int row, Board board)
+        {
+            int evaluation = 5; // Base evaluation value for the rook
+
+            // Define the four cardinal directions
+            int[] dx = { 0, 1, 0, -1 };
+            int[] dy = { -1, 0, 1, 0 };
+
+            for (int i = 0; i < 4; i++)
+            {
+                int nx = col;
+                int ny = row;
+
+                while (true)
+                {
+                    nx += dx[i];
+                    ny += dy[i];
+
+                    if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8 || board.ChessBoard[nx, ny] != null)
+                    {
+                        break; // Stop searching if out of bounds or encountered a piece
+                    }
+
+                    evaluation += 1;
+                }
+            }
+
+            return evaluation;
+        }
+
     }
 }

@@ -6,16 +6,70 @@ using System.Threading.Tasks;
 
 namespace Chess_API.Models
 {
-    internal class Knight : Piece
+    public class Knight : Piece
     {
         public bool HasMoved { get; set; }
         public string PieceFile { get; set; }
         public bool IsWhite { get; set; }
 
-        public int[,] GetEvaluationBoard()
+        public int[,] GetEvaluationBoard(Board board)
         {
-            throw new NotImplementedException();
+            int[,] EvaluationBoard = new int[8, 8];
+
+            // Assigning evaluation values for knights
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    if (board.ChessBoard[col, row] is Knight)
+                    {
+                        EvaluationBoard[col, row] = CalculateKnightEvaluation(col, row, board);
+                    }
+                }
+            }
+
+            return EvaluationBoard;
         }
+
+        private int CalculateKnightEvaluation(int col, int row, Board board)
+        {
+            int evaluation = 3; // Base evaluation value for the knight
+
+            int[] dx = { 1, 2, 2, 1, -1, -2, -2, -1 };
+            int[] dy = { -2, -1, 1, 2, 2, 1, -1, -2 };
+
+            for (int i = 0; i < 8; i++)
+            {
+                int nx = col + dx[i];
+                int ny = row + dy[i];
+
+                if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8 && board.ChessBoard[nx, ny] == null)
+                {
+                    evaluation += GetKnightEvaluationValue(nx, ny, dx, dy, board);
+                }
+            }
+
+            return evaluation;
+        }
+
+        private int GetKnightEvaluationValue(int col, int row, int[] dx, int[] dy, Board board)
+        {
+            int evaluation = 0;
+
+            for (int i = 0; i < 8; i++)
+            {
+                int nx = col + dx[i];
+                int ny = row + dy[i];
+
+                if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8 && board.ChessBoard[nx, ny] == null)
+                {
+                    evaluation += 1;
+                }
+            }
+
+            return evaluation;
+        }
+
 
         public bool Movement(int x, int y, int newX, int newY, Board board)
         {
