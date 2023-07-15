@@ -12,6 +12,8 @@ namespace Chess_API.Models
         public bool IsWhite { get; set; }
         public string PieceFile { get; set; }
 
+
+
         public bool Movement(int x, int y, int newX, int newY, Board board)
         {
             if (ValidMovement(x, y, newX, newY, board))

@@ -15,7 +15,6 @@ namespace Chess_API.Models.Tests
         public void GetEvaluationBoardTest()
         {
             Pawn pawn = new Pawn();
-            pawn.IsWhite = true;
 
             Board board = new Board();
             board.StartingBoard();
