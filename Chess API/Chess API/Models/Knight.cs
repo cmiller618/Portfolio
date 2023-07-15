@@ -8,18 +8,37 @@ namespace Chess_API.Models
 {
     internal class Knight : Piece
     {
-        public bool HasMoved { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PieceFile { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsWhite { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool HasMoved { get; set; }
+        public string PieceFile { get; set; }
+        public bool IsWhite { get; set; }
 
         public bool Movement(int x, int y, int newX, int newY, Board board)
         {
-            throw new NotImplementedException();
+            if(ValidMovement(x, y, newX, newY, board))
+            {
+                board.ChessBoard[newX, newY] = board.ChessBoard[x, y];
+                board.ChessBoard[x, y] = null;
+                board.LastMove.Add(x.ToString() + "," + y.ToString() + "," + newX.ToString() + "," + newY.ToString()
+                    + ",Knight");
+                return true;
+            }
+
+            return false;
         }
 
         public bool ValidMovement(int x, int y, int newX, int newY, Board board)
         {
-            throw new NotImplementedException();
+            int deltaX = Math.Abs(newX - x);
+            int deltaY = Math.Abs(newY - y);
+
+            if(deltaX > 2 || deltaY > 2)
+            {
+                return false;
+            }
+
+            return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2) &&
+                ((board.ChessBoard[newX, newY] == null) || (board.ChessBoard[newX, newY] != null && (!board.ChessBoard[newX, newY].IsWhite && IsWhite
+                || board.ChessBoard[newX, newY].IsWhite && !IsWhite)));
         }
     }
 }

@@ -8,13 +8,22 @@ namespace Chess_API.Models
 {
     public class Rook : Piece
     {
-        public bool HasMoved { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string PieceFile { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsWhite { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool HasMoved { get; set; }
+        public string PieceFile { get; set; }
+        public bool IsWhite { get; set; }
 
         public bool Movement(int x, int y, int newX, int newY, Board board)
         {
-            throw new NotImplementedException();
+            if (ValidMovement(x, y, newX, newY, board))
+            {
+                board.ChessBoard[newX, newY] = board.ChessBoard[x, y];
+                board.ChessBoard[x, y] = null;
+                board.LastMove.Add(x.ToString() + "," + y.ToString() + "," + newX.ToString() + "," + newY.ToString()
+                    + ",Rook");
+                return true;
+            }
+
+            return false;
         }
 
         public bool ValidMovement(int x, int y, int newX, int newY, Board board)
