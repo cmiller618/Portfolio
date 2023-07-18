@@ -11,6 +11,7 @@ namespace Chess_API.Models
         public bool HasMoved { get; set; }
         public string PieceFile { get; set; }
         public bool IsWhite { get; set; }
+        public int PieceValue { get; set; }
 
         public int[,] GetEvaluationBoard(Board board)
         {
