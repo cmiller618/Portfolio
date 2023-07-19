@@ -24,83 +24,99 @@
             ChessBoard[0, 0] = new Rook
             {
                 IsWhite = true,
-                PieceValue = whiteRook
+                PieceValue = whiteRook,
+                PieceFile = "./Board/Pieces/white_rook.png"
             };
             ChessBoard[1, 0] = new Knight
             {
                 IsWhite = true,
-                PieceValue = whiteKnight
+                PieceValue = whiteKnight,
+                PieceFile = "./Board/Pieces/white_knight.png"
             };
             ChessBoard[2, 0] = new Bishop
             {
                 IsWhite = true,
-                PieceValue = whiteBishop
+                PieceValue = whiteBishop,
+                PieceFile = "./Board/Pieces/white_bishop.png"
             };
             ChessBoard[3, 0] = new Queen
             {
                 IsWhite = true,
-                PieceValue = whiteQueen
+                PieceValue = whiteQueen,
+                PieceFile = "./Board/Pieces/white_queen.png"
             };
             ChessBoard[4, 0] = new King
             {
                 IsWhite = true,
-                PieceValue = whiteKing
+                PieceValue = whiteKing,
+                PieceFile = "./Board/Pieces/white_king.png"
             };
             ChessBoard[5, 0] = new Bishop
             {
                 IsWhite = true,
-                PieceValue = whiteBishop
+                PieceValue = whiteBishop,
+                PieceFile = "./Board/Pieces/white_bishop.png"
             };
             ChessBoard[6, 0] = new Knight
             {
                 IsWhite = true,
-                PieceValue = whiteKnight
+                PieceValue = whiteKnight,
+                PieceFile = "./Board/Pieces/white_knight.png"
             };
             ChessBoard[7, 0] = new Rook
             {
                 IsWhite = true,
-                PieceValue = whiteRook
+                PieceValue = whiteRook,
+                PieceFile = "./Board/Pieces/white_rook.png"
             };
 
             ChessBoard[0, 7] = new Rook
             {
                 IsWhite = false,
-                PieceValue = blackRook
+                PieceValue = blackRook,
+                PieceFile = "./Board/Pieces/black_rook.png"
             };
             ChessBoard[1, 7] = new Knight
             {
                 IsWhite = false,
-                PieceValue = blackKnight
+                PieceValue = blackKnight,
+                PieceFile = "./Board/Pieces/black_knight.png"
             };
             ChessBoard[2, 7] = new Bishop
             {
                 IsWhite = false,
-                PieceValue = blackBishop
+                PieceValue = blackBishop,
+                PieceFile = "./Board/Pieces/black_bishop.png"
             };
             ChessBoard[3, 7] = new King
             {
                 IsWhite = false,
-                PieceValue = blackKing
+                PieceValue = blackKing,
+                PieceFile = "./Board/Pieces/black_king.png"
             };
             ChessBoard[4, 7] = new Queen
             {
                 IsWhite = false,
-                PieceValue = blackQueen
+                PieceValue = blackQueen,
+                PieceFile = "./Board/Pieces/black_queen.png"
             };
             ChessBoard[5, 7] = new Bishop
             {
                 IsWhite = false,
-                PieceValue = blackBishop
+                PieceValue = blackBishop,
+                PieceFile = "./Board/Pieces/black_bishop.png"
             };
             ChessBoard[6, 7] = new Knight
             {
                 IsWhite = false,
-                PieceValue = blackKnight
+                PieceValue = blackKnight,
+                PieceFile = "./Board/Pieces/black_knight.png"
             };
             ChessBoard[7, 7] = new Rook
             {
                 IsWhite = false,
-                PieceValue = blackRook
+                PieceValue = blackRook,
+                PieceFile = "./Board/Pieces/black_rook.png"
             };
 
             for (int i = 0; i <= 7; i++)
@@ -109,13 +125,13 @@
                 {
                     IsWhite = true,
                     PieceValue = whitePawn,
-                    PieceFile = ""
+                    PieceFile = "./Board/Pieces/white_pawn.png"
                 };
                 ChessBoard[i, 6] = new Pawn
                 {
                     IsWhite = false,
                     PieceValue = blackPawn,
-                    PieceFile = ""
+                    PieceFile = "./Board/Pieces/black_pawn.png"
                 };
             }
             return ChessBoard;
