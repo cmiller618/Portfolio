@@ -20,7 +20,7 @@ namespace Chess_API.Controllers
         {
             try
             {
-                Piece[,] board = null;
+                Piece[,] board = new Piece[8,8];
                 if (turn == 1)
                 {
                     board = _board.StartingBoard();

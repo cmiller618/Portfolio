@@ -24,9 +24,10 @@ namespace Chess_API
             {
                 options.AddPolicy("AllowReactApp",
                        builder =>{
-                           builder.AllowAnyOrigin()
+                           builder.WithOrigins("http://localhost:3000")
                            .AllowAnyHeader()
-                           .AllowAnyMethod();
+                           .AllowAnyMethod()
+                           .AllowCredentials();
                        });
             });
         }
@@ -41,7 +42,13 @@ namespace Chess_API
             app.UseRouting();
 
             // Enable CORS
-            app.UseCors("AllowReactApp");
+            app.UseCors(builder =>
+                builder
+                .WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+            );
 
             app.UseEndpoints(endpoints =>
             {

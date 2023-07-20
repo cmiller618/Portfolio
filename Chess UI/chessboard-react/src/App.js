@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [board, setBoard] = useState([]);
   const [turn, setTurn] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchBoard();
@@ -11,23 +12,23 @@ function App() {
 
   const fetchBoard = () => {
     // Make a request to the backend API to fetch the board data
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/board/current-board?turn=${turn}`)
-      .then((onJson))
-      .then((data) => setBoard(data))
-      .catch((error) => console.log(error));
+    fetch(`api/board/current-board?turn=${turn}`)
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response);
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBoard(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching board:', error);
+        setLoading(false);
+      });
   };
-
-  const onJson = (x) => {
-    const header = {'Content-Type':'application/json',
-                    'Access-Control-Allow-Origin':'*',
-                    'Access-Control-Allow-Methods':"OPTIONS,POST,GET"}
-    const response = {
-      statusCode: 200,
-      headers: header,
-      body: JSON.stringify(x),
-    };
-    return response;
-  }
 
   const isDarkSquare = (row, col) => {
     return (row + col) % 2 !== 0;
@@ -40,25 +41,31 @@ function App() {
 
   return (
     <div className="App">
-      <div className="chessboard">
-        {board.map((row, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {row.map((piece, colIndex) => (
-              <div
-                key={colIndex}
-                className={`square ${isDarkSquare(rowIndex, colIndex) ? 'dark' : 'light'}`}
-              >
-                {piece && (
-                  <img
-                    src={piece.PieceFile}
-                    alt={`Piece at ${colIndex},${rowIndex}`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="chessboard">
+          {board.map((row, rowIndex) => (
+            <div key={rowIndex} className="row">
+              {row.map((piece, colIndex) => (
+                <div
+                  key={colIndex}
+                  className={`square ${
+                    isDarkSquare(rowIndex, colIndex) ? 'dark' : 'light'
+                  }`}
+                >
+                  {piece && (
+                    <img
+                      src={piece.PieceFile} // Assuming PieceFile contains the image URL for the piece
+                      alt={`Piece at ${colIndex},${rowIndex}`}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
 
       <button onClick={handleTurnChange}>Change Turn</button>
     </div>
