@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Chess_API.Controllers
+namespace Chess_API.Controllers;
+
+public class AIController : ControllerBase
 {
-    public class AIController
-    {
-    }
 }

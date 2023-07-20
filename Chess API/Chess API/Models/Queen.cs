@@ -1,301 +1,294 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Chess_API.Models;
 
-namespace Chess_API.Models
+public class Queen : Piece
 {
-    public class Queen : Piece
+    public bool HasMoved { get; set; }
+    public string PieceFile { get; set; }
+    public bool IsWhite { get; set; }
+    public int PieceValue { get; set; }
+
+    public bool Movement(int x, int y, int newX, int newY, Board board)
     {
-        public bool HasMoved { get; set; }
-        public string PieceFile { get; set; }
-        public bool IsWhite { get; set; }
-        public int PieceValue { get; set; }
-
-        public bool Movement(int x, int y, int newX, int newY, Board board)
+        if(ValidMovement(x, y, newX, newY, board))
         {
-            if(ValidMovement(x, y, newX, newY, board))
+            board.ChessBoard[newX, newY] = board.ChessBoard[x, y];
+            board.ChessBoard[x, y] = null;
+            board.LastMove.Add(x.ToString() + "," + y.ToString() + "," + newX.ToString() + "," + newY.ToString()
+                + ",Queen");
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool ValidMovement(int x, int y, int newX, int newY, Board board)
+    {
+        int deltaX = Math.Abs(newX - x);
+        int deltaY = Math.Abs(newY - y);
+
+        if (deltaX == deltaY)
+        {
+            if (x < newX && y < newY)
             {
-                board.ChessBoard[newX, newY] = board.ChessBoard[x, y];
-                board.ChessBoard[x, y] = null;
-                board.LastMove.Add(x.ToString() + "," + y.ToString() + "," + newX.ToString() + "," + newY.ToString()
-                    + ",Queen");
-                return true;
+                return CheckForPiecesRightUpMovement(x++, y++, newX, newY, board);
             }
 
+            if (x > newX && y < newY)
+            {
+                return CheckForPiecesLeftUpMovement(x--, y++, newX, newY, board);
+            }
+
+            if (x > newX && y > newY)
+            {
+                return CheckForPiecesLeftDownMovement(x--, y--, newX, newY, board);
+            }
+
+            if (x < newX && y > newY)
+            {
+                return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
+            }
+        }
+
+        if (deltaX == 0 && deltaY > 0)
+        {
+            if(newY > y)
+            {
+                return CheckForPiecesUpMovement(x, y++, newX, newY, board);
+            }
+
+            if(newY < y)
+            {
+                return CheckForPiecesDownMovement(x, y--, newX, newY, board);
+            }
+            
+        }
+
+        if (deltaY == 0 && deltaX > 0)
+        {
+            if (newX > x)
+            {
+                return CheckForPiecesRightMovement(x++, y, newX, newY, board);
+            }
+
+            if (newX < x)
+            {
+                return CheckForPiecesLeftMovement(x--, y, newX, newY, board);
+            }
+
+        }
+
+        return false;
+
+    }
+
+    private bool CheckForPiecesLeftMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+             || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
+        {
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
+            return false;
+        }
+        return CheckForPiecesLeftMovement(x--, y, newX, newY, board);
+    }
+
+    private bool CheckForPiecesRightMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+             || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
+        {
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
+            return false;
+        }
+        return CheckForPiecesRightMovement(x++, y, newX, newY, board);
+    }
+
+    private bool CheckForPiecesDownMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+             || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
+        {
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
+            return false;
+        }
+        return CheckForPiecesDownMovement(x, y--, newX, newY, board);
+    }
+
+    private bool CheckForPiecesUpMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
+        {
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
             return false;
         }
 
-        public bool ValidMovement(int x, int y, int newX, int newY, Board board)
+        return CheckForPiecesUpMovement(x, y++, newX, newY, board);
+    }
+
+    public bool CheckForPiecesRightUpMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
         {
-            int deltaX = Math.Abs(newX - x);
-            int deltaY = Math.Abs(newY - y);
-
-            if (deltaX == deltaY)
-            {
-                if (x < newX && y < newY)
-                {
-                    return CheckForPiecesRightUpMovement(x++, y++, newX, newY, board);
-                }
-
-                if (x > newX && y < newY)
-                {
-                    return CheckForPiecesLeftUpMovement(x--, y++, newX, newY, board);
-                }
-
-                if (x > newX && y > newY)
-                {
-                    return CheckForPiecesLeftDownMovement(x--, y--, newX, newY, board);
-                }
-
-                if (x < newX && y > newY)
-                {
-                    return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
-                }
-            }
-
-            if (deltaX == 0 && deltaY > 0)
-            {
-                if(newY > y)
-                {
-                    return CheckForPiecesUpMovement(x, y++, newX, newY, board);
-                }
-
-                if(newY < y)
-                {
-                    return CheckForPiecesDownMovement(x, y--, newX, newY, board);
-                }
-                
-            }
-
-            if (deltaY == 0 && deltaX > 0)
-            {
-                if (newX > x)
-                {
-                    return CheckForPiecesRightMovement(x++, y, newX, newY, board);
-                }
-
-                if (newX < x)
-                {
-                    return CheckForPiecesLeftMovement(x--, y, newX, newY, board);
-                }
-
-            }
-
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
             return false;
-
         }
 
-        private bool CheckForPiecesLeftMovement(int x, int y, int newX, int newY, Board board)
+        return CheckForPiecesRightUpMovement(x++, y++, newX, newY, board);
+    }
+
+    public bool CheckForPiecesLeftUpMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite))
         {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                 || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-            return CheckForPiecesLeftMovement(x--, y, newX, newY, board);
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
+            return false;
         }
 
-        private bool CheckForPiecesRightMovement(int x, int y, int newX, int newY, Board board)
+        return CheckForPiecesLeftUpMovement(x--, y++, newX, newY, board);
+    }
+
+    public bool CheckForPiecesLeftDownMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite))
         {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                 || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-            return CheckForPiecesRightMovement(x++, y, newX, newY, board);
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
+            return false;
         }
 
-        private bool CheckForPiecesDownMovement(int x, int y, int newX, int newY, Board board)
+        return CheckForPiecesLeftDownMovement(x--, y--, newX, newY, board);
+    }
+
+    public bool CheckForPiecesRightDownMovement(int x, int y, int newX, int newY, Board board)
+    {
+        if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite))
         {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                 || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-            return CheckForPiecesDownMovement(x, y--, newX, newY, board);
+            return true;
+        }
+        else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
+            || board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite))
+        {
+            return true;
+        }
+        if (board.ChessBoard[x, y] != null)
+        {
+            return false;
         }
 
-        private bool CheckForPiecesUpMovement(int x, int y, int newX, int newY, Board board)
+        return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
+    }
+    public int[,] GetEvaluationBoard(Board board)
+    {
+        int[,] EvaluationBoard = new int[8, 8];
+
+        // Assigning evaluation values for queens
+        int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
+
+        for (int row = 0; row < 8; row++)
         {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
+            for (int col = 0; col < 8; col++)
             {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-
-            return CheckForPiecesUpMovement(x, y++, newX, newY, board);
-        }
-
-        public bool CheckForPiecesRightUpMovement(int x, int y, int newX, int newY, Board board)
-        {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite)))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || (board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite)))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-
-            return CheckForPiecesRightUpMovement(x++, y++, newX, newY, board);
-        }
-
-        public bool CheckForPiecesLeftUpMovement(int x, int y, int newX, int newY, Board board)
-        {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-
-            return CheckForPiecesLeftUpMovement(x--, y++, newX, newY, board);
-        }
-
-        public bool CheckForPiecesLeftDownMovement(int x, int y, int newX, int newY, Board board)
-        {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-
-            return CheckForPiecesLeftDownMovement(x--, y--, newX, newY, board);
-        }
-
-        public bool CheckForPiecesRightDownMovement(int x, int y, int newX, int newY, Board board)
-        {
-            if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || board.ChessBoard[newX, newY] != null && !board.ChessBoard[newX, newY].IsWhite && IsWhite))
-            {
-                return true;
-            }
-            else if (x == newX && y == newY && (board.ChessBoard[newX, newY] == null
-                || board.ChessBoard[newX, newY] != null && board.ChessBoard[newX, newY].IsWhite && !IsWhite))
-            {
-                return true;
-            }
-            if (board.ChessBoard[x, y] != null)
-            {
-                return false;
-            }
-
-            return CheckForPiecesRightDownMovement(x++, y--, newX, newY, board);
-        }
-        public int[,] GetEvaluationBoard(Board board)
-        {
-            int[,] EvaluationBoard = new int[8, 8];
-
-            // Assigning evaluation values for queens
-            int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
-            int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
-
-            for (int row = 0; row < 8; row++)
-            {
-                for (int col = 0; col < 8; col++)
+                if (board.ChessBoard[col, row] is Queen)
                 {
-                    if (board.ChessBoard[col, row] is Queen)
+                    // Assigning base evaluation value for the queen
+                    EvaluationBoard[col, row] = 9;
+
+                    // Modifying evaluation value based on square position and mobility
+                    for (int i = 0; i < 8; i++)
                     {
-                        // Assigning base evaluation value for the queen
-                        EvaluationBoard[col, row] = 9;
+                        int nx = col;
+                        int ny = row;
 
-                        // Modifying evaluation value based on square position and mobility
-                        for (int i = 0; i < 8; i++)
+                        for (int step = 1; step < 8; step++)
                         {
-                            int nx = col;
-                            int ny = row;
+                            nx += dx[i];
+                            ny += dy[i];
 
-                            for (int step = 1; step < 8; step++)
+                            if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8)
                             {
-                                nx += dx[i];
-                                ny += dy[i];
+                                // Higher values for squares closer to the center
+                                EvaluationBoard[col, row] += 1;
 
-                                if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8)
+                                // Lower values for squares with potential blockades
+                                if (board.ChessBoard[nx, ny] != null)
                                 {
-                                    // Higher values for squares closer to the center
-                                    EvaluationBoard[col, row] += 1;
-
-                                    // Lower values for squares with potential blockades
-                                    if (board.ChessBoard[nx, ny] != null)
-                                    {
-                                        EvaluationBoard[col, row] -= 1;
-                                        break;
-                                    }
-                                }
-                                else
-                                {
+                                    EvaluationBoard[col, row] -= 1;
                                     break;
                                 }
+                            }
+                            else
+                            {
+                                break;
                             }
                         }
                     }
                 }
             }
-
-            return EvaluationBoard;
         }
 
-
+        return EvaluationBoard;
     }
+
+
 }

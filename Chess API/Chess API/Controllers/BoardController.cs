@@ -1,42 +1,40 @@
 ﻿using Chess_API.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.InteropServices;
 
-namespace Chess_API.Controllers
+namespace Chess_API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class BoardController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class BoardController : ControllerBase
+    private readonly Board _board;
+
+    public BoardController()
     {
-        private readonly Board _board;
+        _board = new Board();
+    }
 
-        public BoardController()
+    [Produces(typeof(Piece[,]))]
+    [HttpGet("current-board")]
+    public IActionResult GetCurrentBoard(int turn)
+    {
+        try
         {
-            _board = new Board();
-        }
-
-        [Produces(typeof(Piece[,]))]
-        [HttpGet("current-board")]
-        public IActionResult GetCurrentBoard(int turn)
-        {
-            try
+            Piece[,] board = new Piece[8,8];
+            if (turn == 1)
             {
-                Piece[,] board = new Piece[8,8];
-                if (turn == 1)
-                {
-                    board = _board.StartingBoard();
-                }
-                else
-                {
-                    board = _board.ChessBoard;
-                }
-
-                return Ok(board);
+                board = _board.StartingBoard();
             }
-            catch (Exception)
+            else
             {
-                return NotFound("Current board not found");
-            }            
+                board = _board.ChessBoard;
+            }
+
+            return Ok(board);
         }
+        catch (Exception)
+        {
+            return NotFound("Current board not found");
+        }            
     }
 }
