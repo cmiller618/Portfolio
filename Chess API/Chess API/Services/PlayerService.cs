@@ -3,7 +3,7 @@ using Chess_API.Repositories;
 
 namespace Chess_API.Services;
 
-public class PlayerService
+public class PlayerService : IPlayerService
 {
     private readonly PlayerRepository _repository;
 

@@ -100,3 +100,12 @@ C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\obj\Debug\net7.0\ref
 C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\obj\Debug\net7.0\Chess APITests.pdb
 C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\obj\Debug\net7.0\Chess APITests.genruntimeconfig.cache
 C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\obj\Debug\net7.0\ref\Chess APITests.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Chess API.deps.json
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Chess API.runtimeconfig.json
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Chess API.exe
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\appsettings.json
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess APITests\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

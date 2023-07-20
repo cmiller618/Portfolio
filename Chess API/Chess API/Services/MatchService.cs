@@ -3,7 +3,7 @@ using Chess_API.Repositories;
 
 namespace Chess_API.Services;
 
-public class MatchService
+public class MatchService : IMatchService
 {
     private readonly MatchRepository _repository;
 

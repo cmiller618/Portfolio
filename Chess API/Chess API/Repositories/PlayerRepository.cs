@@ -2,7 +2,7 @@
 
 namespace Chess_API.Repositories;
 
-public class PlayerRepository
+public class PlayerRepository : IPlayerRepository
 {
     internal PlayerProfile AddPlayer(PlayerProfile playerProfile)
     {

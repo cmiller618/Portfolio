@@ -2,7 +2,7 @@
 
 namespace Chess_API.Repositories;
 
-public class MatchRepository
+public class MatchRepository : IMatchRepository
 {
     public List<Match> FindAll()
     {
