@@ -15,6 +15,7 @@ namespace Chess_API.Controllers
             _board = new Board();
         }
 
+        [Produces(typeof(Piece[,]))]
         [HttpGet("current-board")]
         public IActionResult GetCurrentBoard(int turn)
         {
