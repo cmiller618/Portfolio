@@ -21,3 +21,12 @@ C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Newtonso
 C:\Users\chris\Documents\Portfolio\Chess API\Chess API\obj\Debug\net7.0\Chess API.csproj.CopyComplete
 C:\Users\chris\Documents\Portfolio\Chess API\Chess API\obj\Debug\net7.0\Chess API.genruntimeconfig.cache
 C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\appsettings.json
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\BCrypt.Net.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\chris\Documents\Portfolio\Chess API\Chess API\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
