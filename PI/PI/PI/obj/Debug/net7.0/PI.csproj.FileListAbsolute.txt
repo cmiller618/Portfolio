@@ -1,0 +1,15 @@
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\bin\Debug\net7.0\PI.exe
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\bin\Debug\net7.0\PI.deps.json
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\bin\Debug\net7.0\PI.runtimeconfig.json
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\bin\Debug\net7.0\PI.dll
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\bin\Debug\net7.0\PI.pdb
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.csproj.AssemblyReference.cache
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.AssemblyInfoInputs.cache
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.AssemblyInfo.cs
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.csproj.CoreCompileInputs.cache
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.dll
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\refint\PI.dll
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.pdb
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\PI.genruntimeconfig.cache
+C:\Users\chris\Documents\Portfolio\PI\PI\PI\obj\Debug\net7.0\ref\PI.dll
