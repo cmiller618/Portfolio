@@ -1,6 +1,6 @@
 ﻿public class Program
 {
-    public static List<char> Vowels = new List<char>() {'a', 'e', 'i', 'o', 'u'};
+    public static List<char> Vowels = new List<char>() {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
     public static List<char> Punctuation = new List<char> { ',', ' ', ';', '.' };
     public static string vowelEnding = "yay";
     public static string standardEnding = "ay";
@@ -14,17 +14,20 @@
         string newPhrase = String.Empty;
         for(int i = 0; i < splitPhrase.Count; i++)
         {
-            newPhrase = phrase.Replace(splitPhrase[i], ConvertWord(splitPhrase[i]));
+            if (!splitPhrase[i].Equals(""))
+            {
+                phrase = phrase.Replace(splitPhrase[i], ConvertWord(splitPhrase[i]));
+            }       
         }
 
-        Console.WriteLine(newPhrase);
+        Console.WriteLine(phrase);
 
     }
 
     public static string ConvertWord(string word)
     {
         var splitWord = word.ToList();
-        if (Vowels.Contains(splitWord[0]))
+        if (splitWord.Any() && Vowels.Contains(splitWord[0]))
         {
             return word + vowelEnding;
         }
