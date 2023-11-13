@@ -1,0 +1,15 @@
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\bin\Debug\net7.0\CountVowel.exe
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\bin\Debug\net7.0\CountVowel.deps.json
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\bin\Debug\net7.0\CountVowel.runtimeconfig.json
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\bin\Debug\net7.0\CountVowel.dll
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\bin\Debug\net7.0\CountVowel.pdb
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.csproj.AssemblyReference.cache
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.AssemblyInfoInputs.cache
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.AssemblyInfo.cs
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.csproj.CoreCompileInputs.cache
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.dll
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\refint\CountVowel.dll
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.pdb
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\CountVowel.genruntimeconfig.cache
+C:\Users\chris\Documents\Portfolio\CountVowel\CountVowel\CountVowel\obj\Debug\net7.0\ref\CountVowel.dll
